@@ -736,7 +736,7 @@ if [ ! -f "${WIREGUARD_CONFIG}" ]; then
       9)
         read -rp "Custom DNS:" CLIENT_DNS
         if [ -z "${CLIENT_DNS}" ]; then
-          CLIENT_DNS="8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844"
+          CLIENT_DNS="8.8.8.8,8.8.4.4"
         fi
         ;;
       esac
@@ -1002,7 +1002,7 @@ if [ ! -f "${WIREGUARD_CONFIG}" ]; then
     # Set WireGuard settings for this host and first peer.
     echo "# ${PRIVATE_SUBNET_V4} ${PRIVATE_SUBNET_V6} ${SERVER_HOST}:${SERVER_PORT} ${SERVER_PUBKEY} ${CLIENT_DNS} ${MTU_CHOICE} ${NAT_CHOICE} ${CLIENT_ALLOWED_IP}
 [Interface]
-Address = ${GATEWAY_ADDRESS_V4}/${PRIVATE_SUBNET_MASK_V4},${GATEWAY_ADDRESS_V6}/${PRIVATE_SUBNET_MASK_V6}
+Address = ${GATEWAY_ADDRESS_V4}/${PRIVATE_SUBNET_MASK_V4}
 DNS = ${CLIENT_DNS}
 ListenPort = ${SERVER_PORT}
 MTU = ${MTU_CHOICE}
@@ -1014,12 +1014,12 @@ SaveConfig = false
 [Peer]
 PublicKey = ${CLIENT_PUBKEY}
 PresharedKey = ${PRESHARED_KEY}
-AllowedIPs = ${CLIENT_ADDRESS_V4}/32,${CLIENT_ADDRESS_V6}/128
+AllowedIPs = ${CLIENT_ADDRESS_V4}/32
 # ${CLIENT_NAME} end" >>${WIREGUARD_CONFIG}
 
     echo "# ${WIREGUARD_WEBSITE_URL}
 [Interface]
-Address = ${CLIENT_ADDRESS_V4}/${PRIVATE_SUBNET_MASK_V4},${CLIENT_ADDRESS_V6}/${PRIVATE_SUBNET_MASK_V6}
+Address = ${CLIENT_ADDRESS_V4}/${PRIVATE_SUBNET_MASK_V4}
 DNS = ${CLIENT_DNS}
 ListenPort = ${PEER_PORT}
 MTU = ${MTU_CHOICE}
