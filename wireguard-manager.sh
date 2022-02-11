@@ -1116,7 +1116,7 @@ else
     5) # WireGuard add Peer
       if [ -z "${NEW_CLIENT_NAME}" ]; then
         echo "Let's name the WireGuard Peer. Use one word only, no special characters, no spaces."
-        read -rp "New client peer:" -e -i "$(openssl rand -hex 50)" NEW_CLIENT_NAME
+        read -rp "New client peer:" -e -i "$(openssl rand -hex 5)" NEW_CLIENT_NAME
       fi
       if [ -z "${NEW_CLIENT_NAME}" ]; then
         NEW_CLIENT_NAME="$(openssl rand -hex 50)"
